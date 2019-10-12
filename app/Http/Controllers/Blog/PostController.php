@@ -17,10 +17,7 @@ class PostController extends BaseController
     {
         $items = BlogPost::all(); // все записи из БД. Так делать не надо
 
-        //dd($items); // тестовое отображение статей
-
         return view('blog.posts.index', compact('items'));
-        //return view('blog.posts.index', ['items'=>$items]); // альтернатива. Так делать не надо
     }
 
     /**
