@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Blog;
+namespace App\Http\Controllers\Blog\Admin;
 
-use App\Models\BlogPost;
+use App\Models\BlogCategory;
 use Illuminate\Http\Request;
 
-
-class PostController extends BaseController
+class CategoryController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +14,9 @@ class PostController extends BaseController
      */
     public function index()
     {
-        $items = BlogPost::all(); // все записи из БД. Так делать не надо
+        $paginator = BlogCategory::paginate(5); // на каждую страницу по 5 элементов
 
-        return view('blog.posts.index', compact('items'));
+        return view('blog.admin.category.index', compact('paginator'));
     }
 
     /**
@@ -27,62 +26,43 @@ class PostController extends BaseController
      */
     public function create()
     {
-        //
+        dd(__METHOD__);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        dd(__METHOD__);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+        $item = BlogCategory::findOrFail($id); // так обращаться в контроллере не стоит
+        $categoryList = BlogCategory::all();
+
+        return view('blog.admin.category.edit', compact('item', 'categoryList'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        dd(__METHOD__, $request->all(), $id);
     }
 }
