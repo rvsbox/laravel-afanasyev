@@ -48,10 +48,7 @@ class CategoryController extends BaseController
      */
     public function edit($id)
     {
-        $item[] = BlogCategory::find($id); // альтернатива
-        $item[] = BlogCategory::findOrFail($id); // обращаться в контроллере не стоит
-        $item[] = BlogCategory::where('id', $id)->first(); // альтернатива. См метод where()
-        dd(collect($item)->pluck('id'));
+        $item = BlogCategory::findOrFail($id); // так обращаться в контроллере не стоит
         $categoryList = BlogCategory::all();
 
         return view('blog.admin.category.edit', compact('item', 'categoryList'));
@@ -66,6 +63,6 @@ class CategoryController extends BaseController
      */
     public function update(Request $request, $id)
     {
-        dd(__METHOD__);
+        dd(__METHOD__, $request->all(), $id);
     }
 }
