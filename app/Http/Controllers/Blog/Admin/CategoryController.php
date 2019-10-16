@@ -63,8 +63,9 @@ class CategoryController extends BaseController
      */
     public function update(Request $request, $id) // объект класса Request. Кнопка "Сохранить"
     {
+        $id = 1111111;
         $item = BlogCategory::find($id);
-        dd($item);
+        //dd($item);
 
         if (empty($item)) {
             return back()
